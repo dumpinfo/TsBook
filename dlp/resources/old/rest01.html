@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<script type="text/javascript" src="public/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" type="text/css" href="public/css/wky.css">
+<!--bootstrap-->
+<script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="public/js/bootstrap.min.css">
+</head>
+<body>
+<span>REST POST：第15章添加资源</span><br />
+<input type="text" id="user_name" value="" placeholder="用户名" /><br />
+<input type="text" id="email" value="" placeholder="邮件" /><br />
+<input type="button" id="saveBtn" value="保存" /><br />
+<input type="hidden" id="user_id" value="8008" />
+<input type="button" id="updateBtn" value="修改" /><br />
+<input type="button" id="deleteBtn" value="删除" /><br />
+
+<script type="text/javascript">
+alert("????");
+$(document).ready(function() {
+alert("jquery is ok");
+    $("#saveBtn").bind("click", save);
+    $("#updateBtn").bind("click", update);
+    $("#deleteBtn").bind("click", doDelete);
+});
+
+function save() {
+    var reqUrl = "http://192.168.1.16:8090/wky/test/c009"
+    var user_name = $("#user_name").val();
+    var email = $("#email").val();
+    var data = new Object();
+    data.cmd = 'save_user'
+    data.user_name = user_name;
+    data.email = email;
+    $.ajax({
+        url: reqUrl,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            json_str: JSON.stringify(data)
+        },
+        success: onSaveOk,
+        error: onSaveError
+    });
+}
+
+function onSaveOk(json) {
+    alert("保存用户成功：" + json.user_id + "！");
+}
+function onSaveError(msg) {
+    alert("保存用户失败：" + JSON.stringify(msg) + "！");
+}
+
+function update() {
+    var reqUrl = "http://192.168.1.16:8090/wky/test/c009"
+    var user_id = $("#user_id").val();
+    var user_name = $("#user_name").val();
+    var email = $("#email").val();
+    var data = new Object();
+    data.cmd = "update_user";
+    data.user_id = user_id;
+    data.user_name = user_name;
+    data.email = email;
+    $.ajax({
+        url: reqUrl,
+        type: 'PUT',
+        dataType: 'json',
+        data: {
+            json_str: JSON.stringify(data)
+        },
+        success: onUpdateOk,
+        error: onUpdateError
+    });
+}
+function onUpdateOk(json) {
+    if ("Ok" == json.status) {
+        alert("更新信息成功！");
+    } else {
+        alert("更新信息失败！");
+    }
+}
+function onUpdateError(msg) {
+    alert("更新失败：" + JSON.stringify(msg) + "！");
+}
+
+
+function doDelete() {
+    var reqUrl = "http://192.168.1.16:8090/wky/test/c009"
+    var user_id = $("#user_id").val();
+    var data = new Object();
+    data.cmd = "delete_user"
+    data.user_id = user_id;
+    $.ajax({
+        url: reqUrl,
+        type: 'DELETE',
+        dataType: 'json',
+        data: {
+            json_str: JSON.stringify(data)
+        },
+        success: onDeleteOk,
+        error: onDeleteError
+    });
+}
+function onDeleteOk(json) {
+    if ("Ok" == json.status) {
+        alert("删除信息成功！");
+    } else {
+        alert("删除信息失败！");
+    }
+}
+function onDeleteError(msg) {
+    alert("删除失败：" + JSON.stringify(msg) + "！");
+}
+</script>
+
+</body>
+</html>
+
+
+

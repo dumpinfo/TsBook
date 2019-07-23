@@ -1,0 +1,95 @@
+<link href="/web/resources/css/bootstrap.min.css" rel="stylesheet">  
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload.css">  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload-ui.css">  
+<script src="/web/resources/js/jqueryfileupload/jquery.ui.widget.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.fileupload.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.iframe-transport.js"></script>  
+    
+<div class="container-fluid" style="padding-left:0px; padding-right:0px; height: 800px;">
+    <div id="header" class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom:10px;">
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:left;">
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10" style="text-align:center;">
+            <p id="pageTitle">图像分类</p>
+        </div>
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:right;">
+        </div>
+    </div> 
+    <div id="rendLoadingDiv" style="width: 100%; text-align: center;">
+        <span style="width: 100%; font-size: 20px; color: #666666;"></span><br />
+    </div>
+    <div class="row fileupload-buttonbar" style="padding-left:15px;">  
+        <div class="thumbnail col-sm-6">  
+            <img id="weixin_show" style="height:180px;margin-top:10px;margin-bottom:8px;"  src="/web/resources/images/rent_loading.jpg" data-holder-rendered="true">  
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0">
+                <div id="weixin_progress" class="progress-bar progress-bar-success" style="width:0%;"></div>
+            </div>  
+            <div id="uploadDiv" class="caption" align="center">  
+                <span id="weixin_upload" class="btn btn-primary fileinput-button">  
+                    <span>上传</span>  
+                    <input type="file" id="weixin_image" name="files[]" multiple>  
+                </span>  
+                <a id="weixin_cancle" href="javascript:void(0)" class="btn btn-warning" 
+                                role="button" onclick="cancleUpload('weixin')" style="display:none; color: red;">删除</a>  
+            </div>  
+        </div>  
+    </div> 
+    <div id="resultDiv" style="width: 100%; text-align: center;">
+        <span id="resultLabel" style="width: 100%; font-size: 20px; color: #666666;">请先上传图像</span><br /><br />
+    </div>
+</div>
+
+<!-- header e -->
+<script type="text/javascript">
+g_page_mode = 1;
+$(document).ready(function() {
+});
+
+var g_req_id = 1001;
+function getCsfRst() {
+    $.ajax({
+        url: '/ajax?f=c_img_csf&c=CImgCsf&m=get_img_csf_rst&req_id=' + g_req_id,
+        type: 'GET',
+        dataType: 'json',
+        success: onGetCsfRstOk,
+        error: onGetCsfRstError
+    });
+}
+function onGetCsfRstOk(json) {
+    if (json.has_rst != 0) {
+        $("#resultLabel").text(json.img_rst);
+    } else {
+        setTimeout(getCsfRst, 1000);
+    }
+}
+function onGetCsfRstError(msg) {
+    alert("Error:" + JSON.stringify(msg) + "!");
+}
+
+/**
+* 处理文件上传操作
+*/
+$(function() {  
+$("#weixin_image").fileupload({  
+        url: '/upload/upload_mlp1',  
+        formData: {"req_id": 1001, "user_id": 1002, "extra": "ok"},
+        dataType: 'json',
+        sequentialUploads: true,
+        done: function(e, data) {
+            $("#uploadDiv").css("display", "none");
+            $("#weixin_show").attr("src", data.result.url);
+            $("#weixin_progress").css("display", "none");
+            $("#resultLabel").text("让我好好想想...");
+            setTimeout(getCsfRst, 1000);
+        },
+        progress: function(e, data) { 
+            $("#resultLabel").text("正在接收文件...");
+            var progress = parseInt(data.loaded / data.total * 100, 10);  
+            $("#weixin_progress").css('width',progress + '%');  
+            $("#weixin_progress").html(progress + '%');  
+        }
+    });  
+         
+});  
+</script>

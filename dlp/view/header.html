@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>人工智能应用展示</title>
+    <meta name="description" content="利用Tensorflow，进行图像识别、图像分割、时序信号预测工作" />
+	<meta name="keywords" content="图像识别、图像分割、长短时记忆网络、Tensorflow">
+    <meta name="author" content="最老程序员闫涛"> 
+	<script type="text/javascript" src="/web/resources/js/jquery_1.10.2.min.js"></script>
+    <script type="text/javascript" src="/web/resources/js/jquery-migrate-1.2.1.js"></script>
+    <!--bootstrap-->
+    <link rel="stylesheet" type="text/css" href="/web/resources/js/bootstrap.min.css">
+    <script type="text/javascript" src="/web/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/web/resources/js/md5.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<!--iscroll-->
+    <script type="text/javascript" src="/web/resources/js/iscroll.js"></script>
+    <script type="text/javascript" src="/web/resources/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/web/resources/style.css">
+	<style>
+	    .blackbox {
+		    position:absolute;
+		    z-index:2;
+		    width:60px;
+			height:60px;
+		    background:#000;
+		    border-radius:10px;
+			color:#fff;
+			text-align:center;
+			vertical-align:middle;
+		    display:none;	
+		}
+		#loading img {
+		    width:40px;
+		}
+	</style>
+    <script type="text/javascript">
+    var g_page_mode = 1;
+    </script>
+  </head>
+<body>
+    <div id="loading" class="blackbox">
+	    <img src="/web/resources/images/40.gif" />
+	</div>
+	<div id="alertdiv" class="blackbox">
+        <p style="margin:0px;" class="customcontent">登录<br>成功</p>
+    </div>
+	
+	<input type="hidden" id="openId" name="openId" value=""></input>
+	<input type="hidden" id="userId" name="userId" value=""></input>
+	<input type="hidden" id="doctorId" name="doctorId" value=""></input>
+	<input type="hidden" id="doctorName" name="doctorName" value=""></input>
+    <input type="hidden" id="organizationId" name="organizationId" value=""></input>
+    <input type="hidden" id="roleId" name="roleId" value=""></input>
+

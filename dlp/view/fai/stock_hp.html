@@ -1,0 +1,35 @@
+<link href="/web/resources/css/bootstrap.min.css" rel="stylesheet">  
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload.css">  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload-ui.css">  
+<script src="/web/resources/js/jqueryfileupload/jquery.ui.widget.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.fileupload.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.iframe-transport.js"></script>  
+    
+<div class="container-fluid" style="padding-left:0px; padding-right:0px; height: 1000px;">
+    <div id="header" class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom:10px;">
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:left;">
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10" style="text-align:center;">
+            <p id="pageTitle">时序信号分析</p>
+        </div>
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:right;">
+        </div>
+    </div> 
+    <div id="rendLoadingDiv" style="width: 100%; text-align: center;">
+        <span style="width: 100%; font-size: 20px; color: #666666;"></span><br />
+    </div>
+    <div id="resultDiv" style="width: 100%; text-align: left;">
+        <span id="resultLabel" style="width: 100%; font-size: 20px; color: #666666;">对于气象数据，由于需要多个时间连续雷达数据的分析，因此需要引入递归神经网络（RNN），这里我们采用了最常用的长短时记忆网络（LSTM）对时序气象数据进行分析，由于没有合适的数据集，我们在这里采用股票交易数据。我们利用开盘价、最高价、最低价、收盘价、交易量为参数，预测第二天的最高价，并以100天为周期，将预测数据与实际数据绘制成折线图，用来表示预测值与实际值的差异，实践证明，我们模型误差在3%以内，可以很好的预测股市价格的波动。预测结果图如下所示：<br />
+        <img src="/web/resources/images/fai_intro.png" style="width: 300px;" /><br />
+        图中蓝色线为实际值，红色线为预测值。<br />
+        本功能正在建设中，马上上线，敬请期待！</span><br /><br />
+    </div>
+</div>
+
+<!-- header e -->
+<script type="text/javascript">
+g_page_mode = 4;
+$(document).ready(function() {
+});
+</script>

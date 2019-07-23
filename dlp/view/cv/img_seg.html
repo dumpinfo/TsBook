@@ -1,0 +1,49 @@
+<link href="/web/resources/css/bootstrap.min.css" rel="stylesheet">  
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload.css">  
+<link rel="stylesheet" href="/web/resources/css/jquery.fileupload-ui.css">  
+<script src="/web/resources/js/jqueryfileupload/jquery.ui.widget.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.fileupload.js"></script>  
+<script src="/web/resources/js/jqueryfileupload/jquery.iframe-transport.js"></script>  
+    
+<div class="container-fluid" style="padding-left:0px; padding-right:0px; height: 800px;">
+    <div id="header" class="col-xs-12 col-sm-12 col-md-12" style="margin-bottom:10px;">
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:left;">
+        </div>
+        <div class="col-xs-8 col-sm-10 col-md-10" style="text-align:center;">
+            <p id="pageTitle">图像分割</p>
+        </div>
+        <div class="col-xs-2 col-sm-1 col-md-1" style="padding-left:0px;padding-right:0px;text-align:right;">
+        </div>
+    </div> 
+    <div id="rendLoadingDiv" style="width: 100%; text-align: center;">
+        <span style="width: 100%; font-size: 20px; color: #666666;"></span><br />
+    </div>
+    <div class="row fileupload-buttonbar" style="padding-left:15px; display: none;">  
+        <div class="thumbnail col-sm-6">  
+            <img id="weixin_show" style="height:180px;margin-top:10px;margin-bottom:8px;"  src="/web/resources/images/rent_loading.jpg" data-holder-rendered="true">  
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="10" aria-valuemax="100" aria-valuenow="0">
+                <div id="weixin_progress" class="progress-bar progress-bar-success" style="width:0%;"></div>
+            </div>  
+            <div id="uploadDiv" class="caption" align="center">  
+                <span id="weixin_upload" class="btn btn-primary fileinput-button">  
+                    <span>上传</span>  
+                    <input type="file" id="weixin_image" name="files[]" multiple>  
+                </span>  
+                <a id="weixin_cancle" href="javascript:void(0)" class="btn btn-warning" 
+                                role="button" onclick="cancleUpload('weixin')" style="display:none; color: red;">删除</a>  
+            </div>  
+        </div>  
+    </div> 
+    <div id="resultDiv" style="width: 100%; text-align: left;">
+        <span id="resultLabel" style="width: 100%; font-size: 20px; color: #666666;">通过全连接网络（FCN），以PASCAL VOC图像分割数据集作为训练样本，实现像素集图像分割。<br />
+        本功能正在建设中，马上上线，敬请期待！</span><br /><br />
+    </div>
+</div>
+
+<!-- header e -->
+<script type="text/javascript">
+g_page_mode = 3;
+$(document).ready(function() {
+});
+</script>

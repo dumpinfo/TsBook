@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<!-- Force latest IE rendering engine or ChromeFrame if installed -->
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+<meta charset="utf-8">
+<title>jQuery File Upload Demo - Basic Plus version</title>
+<meta name="description" content="File Upload">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Bootstrap styles -->
+<link rel="stylesheet" href="public/css/bootstrap.min.css">
+<!-- Generic page styles -->
+<link rel="stylesheet" href="public/jqfu/css/style.css">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="public/jqfu/css/jquery.fileupload.css">
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-fixed-top .navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://github.com/blueimp/jQuery-File-Upload">深度学习框架</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload/tags">开源项目</a></li>
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload">博客</a></li>
+                <li><a href="https://github.com/blueimp/jQuery-File-Upload/wiki">电子书</a></li>
+                <li><a href="https://blueimp.net">论坛</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h1>多层感知器模型（安全验证）</h1>
+    <h2 class="lead">MNIST手写数字识别</h2>
+    <div id="user_div" style="display: none;">
+        欢迎：<span id="user_name_span"></span>！<br />
+        <input type="button" id="logout_btn" value="退出" />
+        <br /><br />
+    </div>
+    <div id="login_div" style="display: none;">
+      请登录<br />
+      <input type="text" id="login_name" placeholder="登录名" /><br />
+      <input type="password" id="login_pwd" placeholder="密码" /><br />
+      <input type="button" id="login_btn" value="登录" /><br />
+      <a id="reg_span" href="#">我是新用户，请注册</a>
+    </div>
+    <div id="reg_div" style="display: none;">
+      注册新用户<br />
+      <input type="text" id="user_name" placeholder="姓名" /><br />
+      <input type="text" id="email" placeholder="邮件" /><br />
+      <input type="text" id="r_login_name" placeholder="登录名" /><br />
+      <input type="password" id="r_login_pwd" placeholder="密码" /><br />
+      <input type="button" id="reg_btn" value="注册" /><br />
+      <a id="login_span" href="#">登录</a>
+    </div>
+    <!-- The fileinput-button span is used to style the file input field as button -->
+    <span id="add_file_span" class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>添加文件</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    <br>
+    <br>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+    <div id="files" class="files"></div>
+    <div id="upload_notes" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">小提示</h3>
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>仅支持JPG文件</li>
+                <li>图片分辨率28*28，黑底白字</li>
+                <li>内容为0~9数字</li>
+            </ul>
+        </div>
+    </div>
+    <span id="classify_btn" class="btn btn-success fileinput-button" style="display: none;">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>图像识别</span>
+    </span>
+    <span id="async_classify_btn" class="btn btn-success fileinput-button" style="display: none;">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>异步识别</span>
+    </span>
+    <br /><br />
+    <blockquote id="classify_result" style="display: none;">
+        <p>
+            识别结果：<span id="result">***</span>
+        </p>
+    </blockquote>
+    <input type="hidden" id="samples_id" />
+</div>
+<script src="public/js/jquery-3.1.1.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="public/jqfu/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="public/jqfu/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="public/jqfu/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="public/js/bootstrap.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="public/jqfu/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="public/jqfu/js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="public/jqfu/js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="public/jqfu/js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="public/jqfu/js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="public/jqfu/js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="public/jqfu/js/jquery.fileupload-validate.js"></script>
+<script src="public/js/sha1.js"></script>
+<script>
+/*jslint unparam: true, regexp: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    $("#reg_span").bind("click", function() {
+        $("#reg_div").css("display", "block");
+        $("#login_div").css("display", "none");
+    });
+    $("#login_span").bind("click", function() {
+        $("#reg_div").css("display", "none");
+        $("#login_div").css("display", "block");
+    });
+    $("#login_btn").bind("click", login_user);
+    $("#reg_btn").bind("click", reg_user);
+    $("#logout_btn").bind("click", logout_user);
+    var user_id = localStorage.getItem("user_id");
+    if (!user_id || user_id == "") {
+        $("#login_div").css("display", "block");
+        $("#add_file_span").css("display", "none");
+        $("#progress").css("display", "none");
+        $("#upload_notes").css("display", "none");
+    } else {
+        $("#user_div").css("display", "block");
+        $("#user_name_span").text(localStorage.getItem("user_name"));
+        $("#add_file_span").css("display", "block");
+        $("#add_file_span").width(100);
+        $("#progress").css("display", "block");
+        $("#upload_notes").css("display", "block");
+    }
+    $("#classify_btn").bind("click", classify_img);
+    $("#async_classify_btn").bind("click", async_classify_img);
+    // Change this to the location of your server-side upload handler:
+    var url = generate_auth_url('/upload/upload_mlp1?a=1'),
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('上传中...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('取消')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        data.context = $('<div/>').appendTo('#files');
+        $.each(data.files, function (index, file) {
+            var node = $('<p/>')
+                    .append($('<span/>').text(file.name));
+            if (!index) {
+                node
+                    .append('<br>')
+                    .append(uploadButton.clone(true).data(data));
+            }
+            node.appendTo(data.context);
+        });
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = $(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend('<br>')
+                .prepend(file.preview);
+        }
+        if (file.error) {
+            node
+                .append('<br>')
+                .append($('<span class="text-danger"/>').text(file.error));
+        }
+        if (index + 1 === data.files.length) {
+            data.context.find('button')
+                .text('上传文件')
+                .prop('disabled', !!data.files.error);
+        }
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+        if (data.result.status != 'Ok') {
+            alert("文件上传失败！");
+            return ;
+        }
+        $("#samples_id").val(data.result.samples_id);
+        $("#add_file_span").css("display", "none");
+        $("#progress").css("display", "none");
+        $("#upload_notes").css("display", "none");
+        $("#classify_btn").css("display", "block");
+        $("#classify_btn").width(100);
+        $("#async_classify_btn").css("display", "block");
+        $("#async_classify_btn").width(100);
+        $.each(data.result.files, function (index, file) {
+            if (file.url) {
+                var link = $('<a>')
+                    .attr('target', '_blank')
+                    .prop('href', file.url);
+                $(data.context.children()[index])
+                    .wrap(link);
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+                $(data.context.children()[index])
+                    .append('<br>')
+                    .append(error);
+            }
+        });
+    }).on('fileuploadfail', function (e, data) {
+        $.each(data.files, function (index) {
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
+            $(data.context.children()[index])
+                .append('<br>')
+                .append(error);
+        });
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+
+function classify_img() {
+    var ann_id = 1
+    var samples_id = $("#samples_id").val();
+    var reqUrl = "/wky/dl/mlp?cls=c_mlp&cmd=classify_img&ann_id=" + ann_id + "&samples_id=" + samples_id;
+    reqUrl = generate_auth_url(reqUrl);
+    $.ajax({
+        url: reqUrl,
+        type: "GET",
+        dataType: "json",
+        success: onClassifyImgOk,
+        error: onClassifyImgError
+    });
+}
+function onClassifyImgOk(json) {
+    if (json.status != 'Ok') {
+        alert("图片识别失败！");
+        return ;
+    }
+    $("#classify_result").css("display", "block");
+    var result = json.result;
+    var arrs = JSON.parse(json.result);
+    var result = arrs[0];
+    $("#result").text(result);
+}
+
+function onClassifyImgError(msg) {
+    alert("图像识别失败：" + JSON.stringify(msg) + "！");
+}
+
+
+function login_user() {
+    var reqUrl = "/wky/dl?cls=c_user&cmd=login_user";
+    var data = new Object();
+    data.cmd = "login_user"
+    data.login_name = $("#login_name").val();
+    data.login_pwd = $("#login_pwd").val();
+    $.ajax({
+        url: reqUrl,
+        type: "POST",
+        dataType: "json",
+        data: {
+            json_str: JSON.stringify(data)
+        },
+        success: on_login_user_ok,
+        error: on_login_user_error
+    });
+}
+function on_login_user_ok(json) {
+    if ('Ok' != json.status) {
+        alert("登录失败，请重试");
+        return ;
+    }
+    $("#add_file_span").css("display", "block");
+    $("#add_file_span").width(100);
+    $("#progress").css("display", "block");
+    $("#upload_notes").css("display", "block");
+    $("#user_div").css("display", "block");
+    $("#user_name_span").text(json.user_name);
+    localStorage.setItem("user_id", json.user_id);
+    $("#login_div").css("display", "none");
+}
+function on_login_user_error(msg) {
+    alert("用户登录失败：" + JSON.stringify(msg) + "！");
+}
+
+function reg_user() {
+    var reqUrl = "/wky/dl?cls=c_user&cmd=reg_user";
+    var data = new Object();
+    data.cmd = "reg_user"
+    data.user_name = $("#user_name").val();
+    data.email = $("#email").val();
+    data.login_name = $("#r_login_name").val();
+    data.login_pwd = $("#r_login_pwd").val();
+    $.ajax({
+        url: reqUrl,
+        type: "POST",
+        dataType: "json",
+        data: {
+            json_str: JSON.stringify(data)
+        },
+        success: on_reg_user_ok,
+        error: on_reg_user_error
+    });
+}
+function on_reg_user_ok(json) {
+    var user_id = parseInt(json.user_id);
+    var shared_key = json.shared_key
+    localStorage.setItem("user_id", user_id);
+    localStorage.setItem("user_name", $("#user_name").val());
+    localStorage.setItem("shared_key", shared_key);
+    $("#user_div").css("display", "block");
+    $("#user_name_span").text(localStorage.getItem("user_name"));
+    $("#add_file_span").css("display", "block");
+    $("#progress").css("display", "block");
+    $("#upload_notes").css("display", "block");
+    $("#reg_div").css("display", "none");
+}
+function on_reg_user_error(msg) {
+    alert("注册用户失败：" + JSON.stringify(msg) + "！");
+}
+
+function logout_user() {
+    $("#add_file_span").css("display", "none");
+    $("#progress").css("display", "none");
+    $("#upload_notes").css("display", "none");
+    $("#login_div").css("display", "block");
+    $("#user_div").css("display", "none");
+    $("#files").css("display", "none");
+    $("#classify_btn").css("display", "none");
+    $("#async_classify_btn").css("display", "none");
+    $("#classify_result").css("display", "none");
+    localStorage.setItem("user_id", "");
+    localStorage.setItem("shared_key", "");
+}
+
+var g_req_id = 1;
+function generate_auth_url(reqUrl) {
+    g_req_id++;
+    var user_id = localStorage.getItem("user_id");
+    var shared_key = localStorage.getItem("shared_key");
+    var raw_str = "user_id=" + user_id + "&req_id=" + g_req_id + 
+                   "&shared_key=" + shared_key
+    var mac_str = hex_sha1(raw_str)
+    return reqUrl + "&user_id=" + user_id + "&req_id=" + 
+                 g_req_id + "&mac=" + mac_str;
+    //return reqUrl;
+}
+
+
+function async_classify_img() {
+    var ann_id = 1
+    var samples_id = $("#samples_id").val();
+    var reqUrl = "/wky/dl?cls=async_controller&cmd=async_classify_img&ann_id=" + ann_id + "&samples_id=" + samples_id;
+    reqUrl = generate_auth_url(reqUrl);
+    $.ajax({
+        url: reqUrl,
+        type: "GET",
+        dataType: "json",
+        success: onAsyncClassifyImgOk,
+        error: onAsyncClassifyImgError
+    });
+}
+
+function onAsyncClassifyImgOk(json) {
+    if (json.status != 'Ok') {
+        alert("异步识别图片失败！");
+        return ;
+    }
+    alert("异步识别图片请求已接收，请等待系统通知结果");
+}
+function onAsyncClassifyImgError(msg) {
+    alert("异步识别图片失败：" + JSON.stringify(msg) + "！");
+}
+</script>
+</body>
+</html>
+
+

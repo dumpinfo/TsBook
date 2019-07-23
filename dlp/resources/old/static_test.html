@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<script type="text/javascript" src="public/js/jquery-3.1.1.js"></script>
+<link rel="stylesheet" type="text/css" href="public/css/wky.css">
+<!--bootstrap-->
+<script type="text/javascript" src="public/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="public/js/bootstrap.min.css">
+</head>
+<body>
+<div class="red_bg">
+    <span style="color: white;">红色背景</span>
+</div>
+<img src="public/images/t1.jpg" style="width: 200px; height: 200px;" />
+<br />
+<input type="number" id="num1" placeholder="加数1" />
+<span>+</span>
+<input type="number" id="num2" placeholder="加数2" />
+<input type="button" id="eqBtn" value="=" />
+<input type="text" id="rst" placeholder="结果" readonly />
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#eqBtn").bind("click", addNum);
+});
+
+function addNum() {
+    var num1 = $("#num1").val();
+    var num2 = $("#num2").val();
+    var rst = parseInt(num1) + parseInt(num2);
+    $("#rst").val("" + rst);
+}
+</script>
+
+</body>
+</html>
+
+

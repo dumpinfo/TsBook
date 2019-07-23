@@ -1,0 +1,101 @@
+
+        <div id="ques_div">
+        </div>
+        
+        <div id="nav_buttons" class="weui-cells__title" style="text-align: center;">
+            <a id="prev_ques" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" style="">上一题</a>
+            <a id="submit_excs" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" style="">交卷</a>
+            <a id="next_ques" href="#" class="weui-btn weui-btn_mini weui-btn_primary" style="">下一题</a>
+        </div>
+        <div id="no_ques_msg" class="weui-cells__title" style="text-align: center; display: none;">
+            暂时没有练习了！
+        </div>
+        <br /><br />
+        <br /><br />
+        <br /><br />
+<script type="text/javascript">
+var g_ques_seq = 1;
+var g_excs_id = 0;
+var g_ques_num = 0;
+
+$(document).ready(function() {
+    $("#prev_ques").bind("click", get_prev_ques);
+    $("#next_ques").bind("click", get_next_ques);
+    $("#submit_excs").bind("click", submit_excs);
+    get_ques();
+});
+
+function get_ques() {
+    var stut_id = parseInt(localStorage.getItem("user_id"));
+    var major_id = 8;
+    var req_url = "http://" + location.host + "/ajax?f=c_ques&c=CQues&m=get_ques_html&stut_id=" + stut_id + "&ques_seq=" + g_ques_seq + "&major_id=" + major_id;
+    if (g_excs_id > 0) {
+        req_url += "&excs_id=" + g_excs_id;
+    }
+    $.ajax({
+        url: req_url,
+        type: "GET",
+        //data: jsonData,
+        dataType: "json",
+        success: on_get_ques_ok,
+        error: on_get_ques_error
+    });
+}
+function on_get_ques_ok(json) {
+    if ("Ok" == json.status) {
+        $("#ques_div").html(json.html);
+        if ("" == json.html) {
+            $("#nav_buttons").css("display", "none");
+            $("#no_ques_msg").css("display", "block");
+        }
+        g_excs_id = json.excs_id;
+        g_ques_num = json.ques_num;
+    }
+}
+function on_get_ques_error(msg) {
+    alert("获取问题失败：" + JSON.stringify(msg) + "！");
+}
+
+function get_prev_ques() {
+    g_ques_seq--;
+    if (g_ques_seq < 1) {
+        g_ques_seq = 1;
+    }
+    get_ques();
+}
+
+function get_next_ques() {
+    g_ques_seq++;
+    if (g_ques_seq > g_ques_num) {
+        g_ques_seq = g_ques_num;
+    }
+    get_ques();
+}
+
+function submit_excs() {
+    var stut_id = parseInt(localStorage.getItem("user_id"));
+    var req_url = "http://" + location.host + "/ajax?f=c_ques&c=CQues&m=submit_excs_ajax&stut_id=" + stut_id;
+    if (g_excs_id > 0) {
+        req_url += "&excs_id=" + g_excs_id;
+    }
+    $.ajax({
+        url: req_url,
+        type: "GET",
+        //data: jsonData,
+        dataType: "json",
+        success: on_submit_excs_ok,
+        error: on_submit_excs_error
+    });
+}
+function on_submit_excs_ok(json) {
+    if ("Ok" != json.status) {
+        alert("交卷失败！");
+        return ;
+    }
+    alert("交卷成功！");
+    window.location.href = "http://" + location.host + "/web/pages?cmd=show_exercise";
+}
+function on_submit_excs_error(msg) {
+    alert("交卷失败：" + JSON.stringify(msg) + "！");
+}
+</script>

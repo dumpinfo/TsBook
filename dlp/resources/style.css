@@ -1,0 +1,370 @@
+body {
+    font-family:"Microsoft yahei","微软雅黑";
+    font-size:14px;
+	color:#333;
+	overflow-x:hidden;
+}
+a {
+    color:#00a8ff;
+    cursor:pointer;
+}
+a:hover, a:focus {
+	color:#00a8ff;
+    text-decoration:none;
+}
+input,button,a {
+outline:0 none !important; blr:expression(this.onFocus=this.blur());
+} 
+p{
+    margin:5px 10px;
+}
+
+label{
+    color:#999;
+}
+.submitbtn {
+    border:none;
+    border-radius:5px;
+    background-color:#00a8ff;
+    color:#fff;
+    padding-top:10px;
+    padding-bottom:10px;
+    margin-top:10px;
+	font-size:16px;
+}
+
+.modal-body {
+	padding:10px;
+}
+.modal-footer {
+	margin-top:0px;
+	padding:10px;
+	border-top:none;
+
+}
+.modal-content {
+    background:#f2f2f2;
+}
+.btn-success{
+	background:none;
+    border:none;
+    color:#00a8ff;
+}
+.btn-success:hover, 
+.btn-success:focus, 
+.btn-success:active{
+    background:none;
+    border:none;
+    color:#00a8ff;
+}
+.nav-tabs {
+	border-bottom: none;
+	border-top: 1px solid #ddd;
+	padding-top:0px;
+	padding-bottom:0px;
+	background:rgb(249,249,249);
+}
+.nav>li>a {
+	padding: 0px;
+}
+.nav>li {
+	width: 20.0%;
+	background: rgb(249,249,249);
+	text-align:center;
+}
+.nav-tabs>li>a {
+	/*border-top: 1px solid #ddd;*/
+	margin-right: 0px;
+	border-radius: 0px;
+	text-align: center;
+	color: #555;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    border:none;
+	background-color: rgb(249,249,249);
+	color: #00a8ff;
+}
+ul {
+	padding:0px;
+}
+.ullist>li{
+	list-style:none;
+}
+.ifoverflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.imgdiv {
+	text-align:center;
+}
+.imgdiv img {
+	width:64px; 
+	height:64px;
+	margin-top:10px;
+	position:absolute;
+	right:10px;
+	bottom:-68px;
+}
+.infodiv{
+	border-bottom:1px solid #e5e5e5; 
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left:0px;
+}
+.infodiv p {
+	margin: 0px 0px 5px;
+}
+.arrowdiv {
+	padding:0px;
+}
+.arrowdiv img{
+	width:50px; 
+	height:50px;
+	margin-top:10px;
+}
+
+/**page title bar**/
+#header {
+	height:45px;
+	background:#00a8ff;
+	/*margin-bottom:10px;*/
+}
+#pageTitle {
+	font-size:20px;
+	color:#fff;
+	line-height:35px;
+}
+a.menubtn {
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin-top: 5px;
+    cursor:pointer;
+    background-size:35px 35px; 	
+}
+a.backmenu {
+    background-image: url(images/back.png);
+}
+/**sz.php**/
+#appointmenu {
+    padding:15px;
+}
+#appointmenu>li {
+   width: 25%;
+}
+#appointmenu>li>a {
+    padding:5px;
+	color:rgb(0,122,255);
+	font-size:14px;
+}
+#appointmenu>li.active>a {
+    background:rgb(0,122,255);
+	color:#fff;
+}
+.more_icon {
+    width: 14px;
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+#underwaylink {
+    border: 1px solid rgb(0,122,255);
+	border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+}
+#newinvitationlink {
+    border-top:1px solid rgb(0,122,255);
+	border-bottom:1px solid rgb(0,122,255);
+	border-right:1px solid rgb(0,122,255);
+}
+#finishedlink {
+    border-top:1px solid rgb(0,122,255);
+	border-bottom:1px solid rgb(0,122,255);
+}
+#unfinishedlink {
+    border: 1px solid rgb(0,122,255);
+	border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+}
+
+#szmenu {
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	width:100%;
+} 
+#szmenu img{
+    width:35px;
+} 
+.szinfodiv{
+	border-bottom:1px solid #ddd; 
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left:0px;
+}
+.szinfodiv p {
+	margin: 5px 0px 0px;
+}
+.szinfodiv>.imgdiv>img {
+    margin-top:5px;
+}
+.sz_appoint_p {
+    /*color:rgb(255,30,90);*/
+	font-size:16px;
+}
+.sz_invite_p {
+    /*color:rgb(0,168,255);*/
+	font-size:16px;
+}
+.doctorname_p {
+    font-size:16px;
+}
+.price_p {
+    color:rgb(110,110,110);
+	font-size:14px;
+}
+.appoint_info {
+    color:rgb(110,110,110);
+	font-size:14px;
+}
+#mydocbtn {
+    display:inline-block;
+	width:70px;
+	height:70px;
+	background: url(images/door_to_door.png) no-repeat;
+	background-size:70px 70px;	
+}
+
+/*schedule_list*/
+#schedulemenu {
+	padding:0px 15px;
+}
+#schedulemenu>li {
+    width:50%;
+}
+#schedulemenu>li>a {
+    padding:10px;
+	color:rgb(0,122,255);
+	border:1px solid rgb(0,122,255);
+}
+#schedulemenu>li.active>a {
+    background:rgb(0,122,255);
+	color:#fff;
+}
+#allappointlink {
+    border-top-left-radius:5px;
+	border-bottom-left-radius:5px;
+}
+#workplacelink {
+    border-top-right-radius:5px;
+	border-bottom-right-radius:5px;
+}
+
+/*appoint detail add 2015-04-15*/
+.process {
+	text-align:center;
+}
+.process span {
+    font-size:12px;
+}
+.linecolor {
+    background-color:#f2f2f2;
+}
+.marginleft {
+    margin-left:-5px;
+}
+.appointcodebox {
+    background-color:#e8e8e8;
+	padding:10px;
+	margin-bottom:5px;
+	box-shadow: 3px 3px 3px #ccc;
+}
+.appointcodep {
+    font-size:18px;
+	color:#00cc00;
+}
+.appointcodep_red {
+    font-size:16px;
+	color:red;
+}
+.appointtip {
+    color:rgb(115, 115, 115);
+	font-size:12px;
+}
+.appointdetail {
+	margin-bottom:10px;
+    /*border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    border-collapse: separate;*/
+	padding-left:0px;
+	padding-right:0px;
+}
+.appointdetail tr td{
+	padding:5px 10px;
+	
+}
+.appointdetail tr td.left{
+    color:#666;
+	display:inline-block;
+	width:100px;
+}
+.appointdetail tr td.right{
+    text-align:right;
+}
+.condition_img {
+    width:80px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+.buttondiv {
+    text-align:center;
+	margin-top:20px;
+	margin-bottom:20px;
+	padding-left:10px;
+	padding-right:10px;
+}
+.greybtn {
+	background:transparent;
+	border:1px solid rgb(115,115,115);
+	color:red;
+	margin-bottom:5px;
+}
+.greenbtn {
+	background-color:rgb(46,205,9);   
+}
+.buttondiv p {
+    color:rgb(115,115,115);
+}
+.detail_p {
+    font-size:16px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.appoint_title {
+    font-size:16px;
+	color:#00cc00;
+}
+.moreclick a {
+    color:rgb(0,122,255);
+}
+.condition_desc {
+    padding:5px 0px;
+}
+.circle0l {
+	width:20px;
+}
+.dot02 {
+   width:10px;
+}
+.dot01 {
+   width:10px;
+}
+
+.disabledbtn {
+	background:rgb(200, 200, 200);
+	background-color:rgb(200, 200, 200);
+}
+
+
