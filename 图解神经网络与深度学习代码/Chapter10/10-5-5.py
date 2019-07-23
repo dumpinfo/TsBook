@@ -1,0 +1,86 @@
+#"输入值的占位符"
+x=tf.placeholder(tf.float32,[None,1,2,3])
+#"设置是否是训练阶段的占位符"
+trainable=tf.placeholder(tf.bool)
+#"移动平均"
+ema=tf.train.ExponentialMovingAverage(0.7)
+ema_var_list=[]
+#"----------第一层-----------"
+#"2个1行1列3深度的卷积核"
+k1=tf.Variable(tf.constant([
+                [[[1,0],[0,1],[0,0]]],
+                ],tf.float32)
+        )
+#"偏置"
+b1=tf.Variable(tf.zeros(2))
+#"卷积结果加偏置"
+c1=tf.nn.conv2d(x,k1,[1,1,1,1],'SAME')+b1
+beta1=tf.Variable(tf.zeros(c1.get_shape()[-1].value))
+gamma1=tf.Variable(tf.ones(c1.get_shape()[-1].value))
+#"计算每一深度上的均值和方差"
+m1,v1=tf.nn.moments(c1,[0,1,2])
+ema_var_list+=[m1,v1]
+#"为了保存均值和方差的指数移动平均"
+m1_ema=tf.Variable(tf.zeros(c1.get_shape()[-1]),trainable=False)
+v1_ema=tf.Variable(tf.zeros(c1.get_shape()[-1]),trainable=False)
+#"BN操作"
+c1_BN=tf.cond(trainable,
+        lambda:tf.nn.batch_normalization(c1,m1,v1,beta1,gamma1,1e-8),
+        lambda: tf.nn.batch_normalization(c1,m1_ema,
+                                          v1_ema,beta1,gamma1,1e-8)
+        )
+#"relu激活"
+r1=tf.nn.relu(c1_BN)
+#"----------第二层-----------"
+#"2个1行1列2深度的卷积核"
+k2=tf.Variable(tf.constant(
+        [
+        [[[2,0],[0,2]]]
+        ],tf.float32
+        ))
+#"偏置"
+b2=tf.Variable(tf.zeros(2))
+#"卷积结果加偏置"
+c2=tf.nn.conv2d(r1,k2,[1,1,1,1],'SAME')+b2
+beta2=tf.Variable(tf.zeros(c2.get_shape()[-1]))
+gamma2=tf.Variable(tf.ones(c2.get_shape()[-1]))
+#"计算每一深度上的均值和方差"
+m2,v2=tf.nn.moments(c2,[0,1,2])
+ema_var_list+=[m2,v2]
+#"为了保存均值和方差的指数移动平均"
+m2_ema=tf.Variable(tf.zeros(c1.get_shape()[-1]),trainable=False)
+v2_ema=tf.Variable(tf.zeros(c1.get_shape()[-1]),trainable=False)
+#"BN操作"
+c2_BN=tf.cond(trainable,
+        lambda:tf.nn.batch_normalization(c2,m2,v2,beta2,gamma2,1e-8),
+        lambda:tf.nn.batch_normalization(c2,m2_ema,
+                                         v2_ema,beta2,gamma2,1e-8)
+        )
+#"relu激活"
+r2=tf.nn.relu(c2_BN)
+update_moving_avg=ema.apply(ema_var_list)
+#"创建会话"
+session=tf.Session()
+session.run(tf.global_variables_initializer())
+session.run(tf.local_variables_initializer())
+coord=tf.train.Coordinator()
+threads=tf.train.start_queue_runners(sess=session,coord=coord)
+num=2
+for i in range(num):
+    arrs=session.run(arrays)
+    print('---第%(num)d 批array---'%{'num':i+1})
+    print(arrs)
+    _,c1_arr=session.run([update_moving_avg,c1],
+                        feed_dict={x:arrs,trainable:True})
+    print('---第%(num)d 次迭代后第1个卷积层(卷积结果加偏置)的值---'%{'num':i+1})
+    print(c1_arr)
+    #"将计算的指数移动平均的值赋值给 Variable 对象"
+    session.run(m1_ema.assign(ema.average(m1)))
+    session.run(v1_ema.assign(ema.average(v1)))
+    session.run(m2_ema.assign(ema.average(m2)))
+    session.run(v2_ema.assign(ema.average(v2)))
+    print('---第%(num)d 次迭代后第1个卷积层的均值的移动平均值---'%{'num':i+1})
+    print(session.run(m1_ema))
+coord.request_stop()
+coord.join(threads)
+session.close()

@@ -1,0 +1,19 @@
+import tensorflow as tf
+#"2行2列深度是2的二维张量"
+x=tf.constant(
+        [
+        [[2,5],[4,3]],
+        [[6,1],[1,2]]
+        ],tf.float32
+        )
+#"2行2列深度是2的二维张量"
+y=tf.constant(
+        [
+        [[1,2],[2,3]],
+        [[3,2],[5,3]]
+        ],tf.float32
+        )
+session=tf.Session()
+#"x与y的和"
+result=x+y
+print(session.run(result))

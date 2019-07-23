@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+import tensorflow as tf
+#""四维张量""
+t=tf.constant(
+        [
+        #"第1个2行2列2深度的三维张量"
+        [
+        [[1,12],[6,18]],
+        [[9,13],[4,11]],
+        ],
+        #"第2个2行2列2深度的三维张量"
+        [
+        [[2,19],[7,17]],
+        [[3,15],[8,11]]
+        ]
+        ],tf.float32
+        )
+#"计算均值和方差"moments
+mean,variance=tf.nn.moments(t,[0,1,2])#[0,1,2]
+#"BatchNormalize"
+gamma=tf.Variable(tf.constant([2,5],tf.float32))
+beta=tf.Variable(tf.constant([3,8],tf.float32))
+r=tf.nn.batch_normalization(t,mean,variance,beta,gamma,1e-8)
+session=tf.Session()
+session.run(tf.global_variables_initializer())
+#"打印结果"
+print('均值和方差:')
+print(session.run([mean,variance]))
+#"BatchNormalize的结果"
+print('BN操作后的结果:')
+print(session.run(r))

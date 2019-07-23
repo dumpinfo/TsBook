@@ -1,0 +1,36 @@
+# -*- coding: utf-8 -*-
+import tensorflow as tf
+#"1个高3宽3深度2(3x3x2)的输入张量"
+inputTensor=tf.constant(
+        [
+        [
+        [[2,5],[3,3],[8,2]],
+        [[6,1],[1,2],[5,4]],
+        [[7,9],[2,-3],[-1,3]]
+        ]
+        ],tf.float32
+        )
+#
+session=tf.Session()
+#"3个高1宽1深度2(1x1x2)的卷积核"
+filter112_3=tf.constant(
+        [
+        [[[1,2,-1],[-1,-2,2]]]
+        ],tf.float32
+        )
+result1=tf.nn.conv2d(inputTensor,filter112_3,[1,1,1,1],'SAME')
+print(session.run(result1))
+#"2个高2宽2深度2(2x2x2)的卷积核"
+filter222_2=tf.constant(
+        [
+        [[[3,-1],[1,2]],[[-2,1],[2,3]]],
+        [[[-1,1],[-3,7]],[[4,2],[5,4]]]
+        ],tf.float32)
+result2=tf.nn.conv2d(inputTensor,filter222_2,[1,1,1,1],'SAME')
+print(session.run(result2))
+#"最大池化"
+maxPool_33=tf.nn.max_pool(inputTensor,[1,3,3,1],[1,1,1,1],'SAME')
+print(session.run(maxPool_33))
+#"深度方向上拼接"
+result=tf.concat([result1,result2,maxPool_33],3)
+print(session.run(result))
