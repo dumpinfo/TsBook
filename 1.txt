@@ -1,0 +1,112 @@
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_best_practice.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_trainer.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/9_cnn_models/9.2_train_image_classifier.py:      # 此处代码需要配合 tf.train.ClusterSpec、tf.train.Server 等接口一起使用,才能实现分布式训练
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./《TensorFlow实战》代码/9_3_Distributed.py:  cluster = tf.train.ClusterSpec({
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({    \n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/handson-ml/12_distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./tensorflow_cookbook/10_Taking_TensorFlow_to_Production/03_Parallelizing_TensorFlow/03_parallelizing_tensorflow.py:cluster = tf.train.ClusterSpec({'local': ['localhost:2222', 'localhost:2223']})
+./benchmarks/scripts/tf_cnn_benchmarks/cnn_util.py:    self._cluster_spec = tf.train.ClusterSpec(cluster)
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_best_practice.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_trainer.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/9_cnn_models/9.2_train_image_classifier.py:      # 此处代码需要配合 tf.train.ClusterSpec、tf.train.Server 等接口一起使用,才能实现分布式训练
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_best_practice.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_trainer.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/9_cnn_models/9.2_train_image_classifier.py:      # 此处代码需要配合 tf.train.ClusterSpec、tf.train.Server 等接口一起使用,才能实现分布式训练
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_best_practice.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_trainer.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_best_practice.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/5_control_flow_analysis/5.2_trainer.py:  cluster = tf.train.ClusterSpec({
+./tensorflow-in-depth/code/9_cnn_models/9.2_train_image_classifier.py:      # 此处代码需要配合 tf.train.ClusterSpec、tf.train.Server 等接口一起使用,才能实现分布式训练
+./tensorflow-in-depth/code/9_cnn_models/9.2_train_image_classifier.py:      # 此处代码需要配合 tf.train.ClusterSpec、tf.train.Server 等接口一起使用,才能实现分布式训练
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.0.0/Chapter10/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.0.0/Chapter10/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 解析flags并通过tf.train.ClusterSpec配置TensorFlow集群。
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./caicloud/1.4.0/Chapter12/4. 异步更新模式样例程序.py:    # 通过tf.train.ClusterSpec以及当前任务创建tf.train.Server。
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/3. 分布式TensorFlow.py:cluster = tf.train.ClusterSpec({"local": ["localhost:2222", "localhost:2223"]})
+./caicloud/1.4.0/Chapter12/5. 同步更新模式样例程序.py:    cluster = tf.train.ClusterSpec({"ps": ps_hosts, "worker": worker_hosts})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow-1x/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./《TensorFlow实战》代码/9_3_Distributed.py:  cluster = tf.train.ClusterSpec({
+./《TensorFlow实战》代码/9_3_Distributed.py:  cluster = tf.train.ClusterSpec({
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({    \n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/handson-ml/12_distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({    \n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({    \n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/Hands-on-Machine-Learning/12_分布式_TensorFlow_Distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/handson-ml/12_distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./HandsOnMachineLearningwithScikitLearnTensorFlow/handson-ml/12_distributed_tensorflow.ipynb:    "cluster_spec = tf.train.ClusterSpec({\n",
+./tensorflow_cookbook/10_Taking_TensorFlow_to_Production/03_Parallelizing_TensorFlow/03_parallelizing_tensorflow.py:cluster = tf.train.ClusterSpec({'local': ['localhost:2222', 'localhost:2223']})
+./tensorflow_cookbook/10_Taking_TensorFlow_to_Production/03_Parallelizing_TensorFlow/03_parallelizing_tensorflow.py:cluster = tf.train.ClusterSpec({'local': ['localhost:2222', 'localhost:2223']})
+./tensorflow_cookbook/10_Taking_TensorFlow_to_Production/03_Parallelizing_TensorFlow/03_parallelizing_tensorflow.py:cluster = tf.train.ClusterSpec({'local': ['localhost:2222', 'localhost:2223']})
+./tensorflow_cookbook/10_Taking_TensorFlow_to_Production/03_Parallelizing_TensorFlow/03_parallelizing_tensorflow.py:cluster = tf.train.ClusterSpec({'local': ['localhost:2222', 'localhost:2223']})
+./benchmarks/scripts/tf_cnn_benchmarks/cnn_util.py:    self._cluster_spec = tf.train.ClusterSpec(cluster)
+./benchmarks/scripts/tf_cnn_benchmarks/cnn_util.py:    self._cluster_spec = tf.train.ClusterSpec(cluster)
+./benchmarks/scripts/tf_cnn_benchmarks/cnn_util.py:    self._cluster_spec = tf.train.ClusterSpec(cluster)
+./benchmarks/scripts/tf_cnn_benchmarks/cnn_util.py:    self._cluster_spec = tf.train.ClusterSpec(cluster)
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_slurm.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_async.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
+./Mastering-TensorFlow/Chapter15/ch-15_mnist_dist_sync.py:    clusterSpec = tf.train.ClusterSpec({'ps': ps, 'worker': workers})
